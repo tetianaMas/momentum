@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="./assets/styles/style.css" />
+  <title>momentum</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="player player-js">
+
+      <div class="player-controls">
+        <div class="buttons-control-wrapper">
+          <button class="play-prev play-prev-js player-icon"></button>
+          <button class="play play-js player-icon"></button>
+          <button class="play-next play-next-js player-icon"></button>
+        </div>
+
+        <div class="song-info">
+          <div class="track-time">
+            <div class="time-wrapper">
+              <span class="current-time-js">0:00</span>
+              <p class="player-title">
+                <span class="player-title-sm player-title-js"></span>
+              </p>
+              <span class="full-time-js"></span>
+            </div>
+            <div class="player-progress timeline-js">
+              <input class="progress-bar player-progress-js" type="range" value="0" step="0.01">
+            </div>
+          </div>
+          <div class="volume volume-js">
+            <button class="volume-btn volume-btn-js"></button>
+            <input class="volume-progress volume-progress-js" type="range" value="1" step="0.01" max="1">
+          </div>
+        </div>
+
+      </div>
+      <ul class="play-list play-list-js"></ul>
+    </div>
+    <div class="weather weather-js">
+      <input type="text" class="city city-js">
+      <i class="weather-icon owf weather-icon-js"></i>
+      <div class="weather-error weather-error-js"></div>
+      <div class="description-container">
+        <p class="temperature temperature-js"></p>
+        <span class="weather-description weather-description-js"></span>
+      </div>
+      <div class="wind wind-js">
+      </div>
+      <div class="humidity humidity-js">
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon slide-prev-js"></button>
+      <button class="slide-next slider-icon slide-next-js"></button>
+    </div>
+    <time class="time time-js"></time>
+    <date class="date date-js"></date>
+    <div class="greeting-container greeting-container-js">
+      <span class="greeting greeting-js"></span>
+      <input type="text" class="name input-name-js">
+    </div>
+  </main>
+  <footer class="footer-container">
+    <div class="footer">
+      <div>
+        <button class="settings-btn settings-btn-js unactive-btn"></button>
+
+
+        <div class="settings-container settings-container-js closed">
+          <div class="settings-body">
+            <ul class="categories categories-js">
+              <li class="categories-item categories-item-lang categories-item-js active" id="lang">Language</li>
+              <li class="categories-item categories-item-img categories-item-js" id="img">Image sourse</li>
+              <li class="categories-item categories-item-block categories-item-js" id="block">Blocks</li>
+            </ul>
+
+            <div class="props">
+              <h4 class="props-title props-title-js">Language</h4>
+              <ul class="list list-js">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-container quote-container-js">
+        <button class="change-quote change-quote-js"></button>
+        <div class="quote-wrapper quote-wrapper-js">
+          <blockquote class="quote quote-js"></blockquote>
+          <div class="author author-js"></div>
+        </div>
+      </div>
+
+      <div>
+        <button class="todo-btn todo-btn-js unactive-btn"></button>
+
+        <div class="todo-container todo-container-js closed">
+          <header class="todo-header">
+            <div class="tab tab-todo tab-todo-js active">
+              <p class="todo-title todo-title-js"></p>
+            </div>
+            <div class="tab tab-done tab-done-js">
+              <p class="todo-title todo-title-done-js"></p>
+            </div>
+          </header>
+
+          <main class="todo-main">
+            <ul class="todo-list todo-list-js"></ul>
+
+            <ul class="done-list done-list-js d-none"></ul>
+          </main>
+
+          <footer class="todo-footer">
+            <input type="text" class="todo-input todo-input-js">
+          </footer>
+        </div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a class="link" href="https://github.com/tetianaMas" target="_blank">
+        <svg class="icon-github" height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32"
+          data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+        <span class="copyright">2021</span>
+      </a>
+      <a class="link" href="https://rs.school/js/" target="_blank">
+        <span class="icon-rss"></span>
+      </a>
+    </div>
+  </footer>
+  <script src="./index.js"></script>
+</body>
+
+</html>

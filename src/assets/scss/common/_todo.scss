@@ -1,0 +1,181 @@
+.todo-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../svg/todo.svg');
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(288deg)
+    brightness(103%) contrast(102%);
+  opacity: 0.8;
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+}
+
+.todo-btn.hidden {
+  @include hide;
+}
+
+.todo-btn.active-btn {
+  animation: none;
+}
+
+.todo-container {
+  position: absolute;
+  right: 20px;
+  bottom: 55px;
+  z-index: 10;
+  min-height: 200px;
+  width: 300px;
+  max-width: 100%;
+  padding: 20px;
+  background-color: $white;
+  border-radius: 18px;
+  opacity: 1;
+  transition: 0.5s;
+  transition: opacity 0.8s;
+}
+
+.todo-container.hidden,
+.btn-container.hidden {
+  @include hide;
+}
+
+.todo-container.closed {
+  transform: translateX(-1500%);
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.tab.active .todo-title {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.todo-container .tab-todo.active .todo-list {
+  display: block;
+}
+
+.todo-container .tab-done.active .done-list {
+  display: block;
+}
+
+.todo-title {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+  color: $black;
+  opacity: 0.6;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.todo-main {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.todo-item {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  &-text {
+    max-height: 36px;
+    max-width: 70%;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: $black;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+  &-checkbox {
+    height: 28px;
+    &:hover {
+      cursor: pointer;
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.todo-item-done {
+  .todo-item-input {
+    text-decoration: line-through;
+  }
+}
+
+.todo-delete-btn,
+.todo-edit-btn {
+  width: 17px;
+  height: 17px;
+  opacity: 0.6;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../svg/trash.svg');
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.todo-edit-btn {
+  background-image: url('../svg/edit.svg');
+}
+
+.todo-footer {
+  min-height: 40px;
+  .todo-input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid $grey;
+    border-radius: 18px;
+    color: $grey;
+    opacity: 1;
+    &:focus-visible {
+      outline: none;
+    }
+    &::placeholder {
+      text-transform: capitalize;
+    }
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+@media screen and (max-width: 452px) {
+  .todo-title,
+  .todo-footer .todo-input {
+    font-size: 14px;
+  }
+}
