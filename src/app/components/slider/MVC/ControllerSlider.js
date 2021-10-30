@@ -7,19 +7,16 @@ export class ControllerSlider {
   }
 
   async init() {
+    this.model.loadImages();
     eventBus.subscribe('img-changed', async args => {
       const [, val] = args;
       this.model.setSourse(val);
-      this.model.removeFromFlickrCollection();
-      this.model.removeFromUnspCollection();
-      this.view.setBg(await this.model.getBgLink());
+      await this.updateBg();
     });
 
-    eventBus.subscribe('add-tags', async tags => {
+    eventBus.subscribe('add-tags', tags => {
       this.model.setTags(tags);
-      this.model.removeFromFlickrCollection();
-      this.model.removeFromUnspCollection();
-      this.view.setBg(await this.model.getBgLink());
+      this.updateBg();
       eventBus.post('post-tags', this.model.getTags());
     });
 
@@ -27,26 +24,26 @@ export class ControllerSlider {
       eventBus.post('post-tags', this.model.getTags());
     });
 
-    this.view.nextSliderBtn.addEventListener('click', async () => {
-      this.model.randomNum++;
-      if (this.model.randomNum > 20) {
-        this.model.randomNum = 1;
-      }
-      this.view.setBtnDisabled();
-      this.view.setBg(await this.model.getBgLink());
+    this.view.nextSliderBtn.addEventListener('click', () => {
+      this.model.getNextImg();
+      this.setBgImage();
     });
 
-    this.view.prevSliderBtn.addEventListener('click', async () => {
-      this.model.randomNum--;
-      if (this.model.randomNum < 1) {
-        this.model.randomNum = 20;
-      }
-      this.view.setBtnDisabled();
-      this.view.setBg(await this.model.getBgLink());
+    this.view.prevSliderBtn.addEventListener('click', () => {
+      this.model.getPrevImg();
+      this.setBgImage();
     });
+  }
 
-    this.model.removeFromFlickrCollection();
-    this.model.removeFromUnspCollection();
-    this.view.setTransitionEvent();
+  async updateBg() {
+    this.view.setBtnDisabled();
+    const link = await this.model.getBgLink();
+    this.view.setBg(await link);
+  }
+
+  setBgImage() {
+    this.view.setBtnDisabled();
+    const image = this.model.getBgImage();
+    this.view.setBg(image);
   }
 }

@@ -102,7 +102,7 @@ export class ViewTodo {
       this.input.setAttribute('disabled', '');
     });
 
-    this.input.addEventListener('keydown', e => {
+    this.input.addEventListener('keyup', e => {
       if (e.code === 'Enter') {
         const value = this.input.value;
         if (value) {

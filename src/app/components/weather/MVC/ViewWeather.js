@@ -1,13 +1,19 @@
 export class ViewWeather {
   constructor() {
     this.weatherContainer = document.querySelector('.weather-js');
-    this.iconContainer = document.querySelector('.weather-icon-js');
-    this.temperatureContainer = document.querySelector('.temperature-js');
-    this.descrContainer = document.querySelector('.weather-description-js');
-    this.cityContainer = document.querySelector('.city-js');
-    this.windContainer = document.querySelector('.wind-js');
-    this.humidityContainer = document.querySelector('.humidity-js');
-    this.errorContainer = document.querySelector('.weather-error-js');
+    this.iconContainer =
+      this.weatherContainer.querySelector('.weather-icon-js');
+    this.temperatureContainer =
+      this.weatherContainer.querySelector('.temperature-js');
+    this.descrContainer = this.weatherContainer.querySelector(
+      '.weather-description-js'
+    );
+    this.cityContainer = this.weatherContainer.querySelector('.city-js');
+    this.windContainer = this.weatherContainer.querySelector('.wind-js');
+    this.humidityContainer =
+      this.weatherContainer.querySelector('.humidity-js');
+    this.errorContainer =
+      this.weatherContainer.querySelector('.weather-error-js');
   }
 
   render(data, langProps, city) {

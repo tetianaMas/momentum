@@ -23,15 +23,6 @@ export const props = {
           errorMes:
             'Invalid value. Enter tags in English with spaces or commas.',
         },
-        {
-          text: 'Flickr API',
-          checked: false,
-          id: 'img-fli',
-          tags: true,
-          addText: 'Add your own tags. Enter tags with spaces or commas.',
-          errorMes:
-            'Invalid value. Enter tags in English with spaces or commas.',
-        },
       ],
     },
     block: {
@@ -66,15 +57,6 @@ export const props = {
           text: 'Unsplash API',
           checked: false,
           id: 'img-unsp',
-          tags: true,
-          addText: 'Добавьте теги. Введите теги через пробел или запятую.',
-          errorMes:
-            'Неверное значение. Введите теги на английском через пробел или запятую.',
-        },
-        {
-          text: 'Flickr API',
-          checked: false,
-          id: 'img-fli',
           tags: true,
           addText: 'Добавьте теги. Введите теги через пробел или запятую.',
           errorMes:

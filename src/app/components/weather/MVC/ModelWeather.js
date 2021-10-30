@@ -1,4 +1,4 @@
-import { weaterService } from '../../../service/weatherService/WeatherService';
+import { apiService } from '../../../service/apiService/ApiService';
 import { storage } from '../../../service/storage/LocalStorage';
 import { weatherProps } from '../props/weatherProps';
 import { langProps } from '../props/langProps';
@@ -7,6 +7,8 @@ export class ModelWeather {
   constructor() {
     this.weatherData = null;
     this.lang = 'en';
+    this.api = weatherProps.api;
+    this.key = weatherProps.key;
     this.defaultCity = weatherProps.defaultCity;
     this.units = weatherProps.units;
     this.langProperties = langProps;
@@ -27,7 +29,7 @@ export class ModelWeather {
     storage.set('city', city);
   }
 
-  setLang(lang = 'en') {
+  setLang(lang = this.lang) {
     this.lang = lang;
   }
 
@@ -36,7 +38,17 @@ export class ModelWeather {
   }
 
   getWeatherData() {
-    return weaterService.get(this.getCity(), this.lang, this.units);
+    const link =
+      this.api +
+      '?appid=' +
+      this.key +
+      '&q=' +
+      this.getCity() +
+      '&lang=' +
+      this.lang +
+      '&units=' +
+      this.units;
+    return apiService.get(link);
   }
 
   getCity() {

@@ -34,6 +34,7 @@ ol {
 }
 
 body {
+  position: relative;
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -44,8 +45,33 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
-  transition: background-image 1s ease-in-out;
+  backdrop-filter: none;
   overflow-x: hidden;
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  transition: all 1s ease-in-out;
+  opacity: 0;
+}
+
+.bg-img.visible {
+  opacity: 1;
 }
 
 blockquote::after {

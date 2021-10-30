@@ -1,15 +1,24 @@
 export class ViewSlider {
-  constructor(model) {
-    this.model = model;
+  constructor() {
     this.nextSliderBtn = document.querySelector('.slide-next-js');
     this.prevSliderBtn = document.querySelector('.slide-prev-js');
+    this.bgImg = document.getElementById('bg-img');
+    this.setTransitionEvent();
   }
 
   setBg(link) {
     const img = new Image();
     img.src = link;
+
     img.addEventListener('load', () => {
-      document.body.style.backgroundImage = `url(${img.src})`;
+      const src = `url("${img.src}")`;
+      if (this.bgImg.style.backgroundImage !== src) {
+        this.bgImg.style.backgroundImage = src;
+        this.bgImg.classList.remove('visible');
+        this.bgImg.classList.add('visible');
+      } else {
+        this.removeBtnDisabled();
+      }
     });
   }
 
@@ -24,10 +33,10 @@ export class ViewSlider {
   }
 
   setTransitionEvent() {
-    document.body.addEventListener('transitionend', e => {
-      if (e.target.tagName === 'BODY') {
-        setTimeout(() => this.removeBtnDisabled(), 300);
-      }
+    this.bgImg.addEventListener('transitionend', e => {
+      setTimeout(() => {
+        this.removeBtnDisabled();
+      }, 300);
     });
   }
 }
