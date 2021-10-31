@@ -102,14 +102,12 @@ export class ViewTodo {
       this.input.setAttribute('disabled', '');
     });
 
-    this.input.addEventListener('keyup', e => {
-      if (e.code === 'Enter') {
-        const value = this.input.value;
-        if (value) {
-          const id = Utils.getId();
-          eventBus.post('add-todo', [value, id]);
-          this.input.value = '';
-        }
+    this.input.addEventListener('change', e => {
+      const value = this.input.value;
+      if (value) {
+        const id = Utils.getId();
+        eventBus.post('add-todo', [value, id]);
+        this.input.value = '';
       }
     });
 
