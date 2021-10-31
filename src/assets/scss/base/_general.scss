@@ -74,6 +74,10 @@ body {
   opacity: 1;
 }
 
+.blur {
+  filter: blur(10px);
+}
+
 blockquote::after {
   content: '”';
 }

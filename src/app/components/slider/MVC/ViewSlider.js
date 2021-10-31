@@ -19,10 +19,9 @@ export class ViewSlider {
       } else {
         setTimeout(() => {
           this.removeBtnDisabled();
-        }, 800);
+          this.removeBlur();
+        }, 500);
       }
-
-      this.removeBlur();
     });
   }
 
@@ -37,18 +36,19 @@ export class ViewSlider {
   }
 
   setBlur() {
-    this.bgImg.style.filter = 'blur(10px)';
+    this.bgImg.classList.add('blur');
   }
 
   removeBlur() {
-    this.bgImg.style.filter = 'none';
+    this.bgImg.classList.remove('blur');
   }
 
   initEvents() {
     this.bgImg.addEventListener('transitionend', () => {
       setTimeout(() => {
         this.removeBtnDisabled();
-      }, 800);
+        this.removeBlur();
+      }, 500);
     });
   }
 }
