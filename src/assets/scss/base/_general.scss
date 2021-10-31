@@ -49,6 +49,12 @@ body {
 }
 
 .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: -4;
+  min-height: 100vh;
   height: 100%;
   width: 100%;
 }
@@ -65,6 +71,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
+
   transition: all 1.5s ease;
   opacity: 0;
 }
