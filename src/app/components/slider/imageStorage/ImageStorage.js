@@ -42,8 +42,6 @@ export class ImageStorage {
     if (this.randomNum > this.collection.length - 1) {
       this.randomNum = 0;
     }
-
-    this.getImage();
   }
 
   getPrevImg() {
@@ -51,8 +49,6 @@ export class ImageStorage {
     if (this.randomNum < 0) {
       this.randomNum = this.collection.length - 1;
     }
-
-    this.getImage();
   }
 
   removeCollection() {
