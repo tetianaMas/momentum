@@ -3,7 +3,9 @@ export class ViewSlider {
     this.nextSliderBtn = document.querySelector('.slide-next-js');
     this.prevSliderBtn = document.querySelector('.slide-prev-js');
     this.bgImg = document.getElementById('bg-img');
+    this.bgImgCopy = document.getElementById('bg-copy');
     this.initEvents();
+    this.isCopyShown = false;
   }
 
   setBg(link) {
@@ -12,15 +14,20 @@ export class ViewSlider {
 
     img.addEventListener('load', () => {
       const src = `url("${img.src}")`;
-      if (this.bgImg.style.backgroundImage !== src) {
+      if (this.bgImg.style.backgroundImage === src) {
+        this.showImage();
+        return;
+      }
+      if (!this.bgImg.style.backgroundImage || this.isCopyShown) {
+        this.isCopyShown = false;
         this.bgImg.style.backgroundImage = src;
-        this.bgImg.classList.remove('visible');
+        this.bgImgCopy.classList.remove('visible');
         this.bgImg.classList.add('visible');
       } else {
-        setTimeout(() => {
-          this.removeBtnDisabled();
-          this.removeBlur();
-        }, 500);
+        this.isCopyShown = true;
+        this.bgImgCopy.style.backgroundImage = src;
+        this.bgImg.classList.remove('visible');
+        this.bgImgCopy.classList.add('visible');
       }
     });
   }
@@ -45,10 +52,18 @@ export class ViewSlider {
 
   initEvents() {
     this.bgImg.addEventListener('transitionend', () => {
-      setTimeout(() => {
-        this.removeBtnDisabled();
-        this.removeBlur();
-      }, 500);
+      this.showImage();
     });
+
+    this.bgImgCopy.addEventListener('transitionend', () => {
+      this.showImage();
+    });
+  }
+
+  showImage() {
+    setTimeout(() => {
+      this.removeBtnDisabled();
+      this.removeBlur();
+    }, 500);
   }
 }
