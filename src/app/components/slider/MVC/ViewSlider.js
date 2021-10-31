@@ -19,7 +19,7 @@ export class ViewSlider {
       } else {
         setTimeout(() => {
           this.removeBtnDisabled();
-        }, 1000);
+        }, 800);
       }
 
       this.removeBlur();
@@ -48,7 +48,7 @@ export class ViewSlider {
     this.bgImg.addEventListener('transitionend', () => {
       setTimeout(() => {
         this.removeBtnDisabled();
-      }, 1000);
+      }, 800);
     });
   }
 }
