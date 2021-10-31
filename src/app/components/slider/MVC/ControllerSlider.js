@@ -59,8 +59,6 @@ export class ControllerSlider {
 
   setBgImage() {
     this.view.setBtnDisabled();
-    this.view.setBlur();
-
     const image = this.model.getBgImage();
     this.view.setBg(image);
   }
