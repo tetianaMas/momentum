@@ -3,7 +3,6 @@ export class ViewSlider {
     this.nextSliderBtn = document.querySelector('.slide-next-js');
     this.prevSliderBtn = document.querySelector('.slide-prev-js');
     this.bgImg = document.getElementById('bg-img');
-    this.setTransitionEvent();
   }
 
   setBg(link) {
@@ -16,9 +15,12 @@ export class ViewSlider {
         this.bgImg.style.backgroundImage = src;
         this.bgImg.classList.remove('visible');
         this.bgImg.classList.add('visible');
-      } else {
-        this.removeBtnDisabled();
       }
+      setTimeout(() => {
+        this.removeBtnDisabled();
+
+        this.removeBlur();
+      }, 300);
     });
   }
 
@@ -32,11 +34,11 @@ export class ViewSlider {
     this.prevSliderBtn.classList.remove('disabled');
   }
 
-  setTransitionEvent() {
-    this.bgImg.addEventListener('transitionend', e => {
-      setTimeout(() => {
-        this.removeBtnDisabled();
-      }, 300);
-    });
+  setBlur() {
+    this.bgImg.style.filter = 'blur(10px)';
+  }
+
+  removeBlur() {
+    this.bgImg.style.filter = 'none';
   }
 }

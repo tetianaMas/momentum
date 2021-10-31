@@ -1,23 +1,23 @@
 const playList = [
   {
-    title: 'Aqua Caelestis',
-    src: 'assets/sounds/Aqua Caelestis.mp3',
-    duration: '00:39',
+    title: 'Dream Piano',
+    src: 'assets/sounds/Dream-Piano.mp3',
+    duration: '02:09',
   },
   {
-    title: 'River Flows In You',
-    src: 'assets/sounds/River Flows In You.mp3',
-    duration: '01:37',
+    title: 'Melody of Nature',
+    src: 'assets/sounds/Melody-of-Nature.mp3',
+    duration: '03:01',
   },
   {
-    title: 'Summer Wind',
-    src: 'assets/sounds/Summer Wind.mp3',
-    duration: '01:50',
+    title: 'Nightlife',
+    src: 'assets/sounds/Nightlife.mp3',
+    duration: '03:46',
   },
   {
-    title: 'Ennio Morricone',
-    src: 'assets/sounds/Ennio Morricone.mp3',
-    duration: '01:37',
+    title: 'Simple Piano Melody',
+    src: 'assets/sounds/Simple-Piano-Melody.mp3',
+    duration: '01:31',
   },
 ];
 export default playList;

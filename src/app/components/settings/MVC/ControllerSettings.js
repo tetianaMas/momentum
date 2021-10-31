@@ -21,15 +21,19 @@ export class ControllerSettings {
       this.view.renderCategories(this.model.getCategories());
     });
 
+    eventBus.subscribe('no-serch-results', this.noResultsFound.bind(this));
+
     this.model.initSettings();
     this.view.initEvents();
 
-    this.view.settingsBtn.addEventListener('click', () => {
+    this.view.settingsBtn.addEventListener('click', e => {
+      e.stopPropagation();
       this.view.toggleContainer();
       this.view.toggleBtn();
     });
 
     this.view.categoriesContainer.addEventListener('click', e => {
+      e.stopPropagation();
       if (e.target.tagName === 'LI') {
         this.view.toggleCategories(e.target);
         this.view.renderProps(
@@ -40,6 +44,7 @@ export class ControllerSettings {
     });
 
     this.view.propsList.addEventListener('click', e => {
+      e.stopPropagation();
       if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') {
         const id = e.target.id || e.target.parentElement.id;
         if (id.split('-')[0] === 'block') {
@@ -52,5 +57,9 @@ export class ControllerSettings {
         this.model.saveToStorage();
       }
     });
+  }
+
+  noResultsFound() {
+    this.view.renderNoResultsError(this.model.getProps());
   }
 }

@@ -16,13 +16,13 @@ export class ViewWeather {
       this.weatherContainer.querySelector('.weather-error-js');
   }
 
-  render(data, langProps, city) {
+  render(data, langProps) {
     this.errorContainer.textContent = '';
     this.iconContainer.className = 'weather-icon owf weather-icon-js';
     this.iconContainer.classList.add(`owf-${data.weather[0].id}`);
     this.temperatureContainer.textContent = `${Math.round(data.main.temp)}°C`;
     this.descrContainer.textContent = data.weather[0].description;
-    this.cityContainer.value = city;
+    this.cityContainer.value = data.name;
     this.windContainer.textContent = `${langProps.windSpeed}${Math.round(
       data.wind.speed
     )} ${langProps.windUnits}`;

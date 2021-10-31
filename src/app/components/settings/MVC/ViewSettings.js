@@ -8,6 +8,7 @@ export class ViewSettings {
     this.propsList = document.querySelector('.list-js');
     this.categoriesContainer = document.querySelector('.categories-js');
     this.tagsInput = null;
+    this.errorMes = '';
   }
 
   initEvents() {
@@ -27,7 +28,6 @@ export class ViewSettings {
     let isGit = false;
     let addText = '';
     let template = '';
-    let errorMes = '';
 
     elems.props.forEach(elem => {
       template += `<li class="list-item ${elem.checked ? 'checked' : ''}" id="${
@@ -43,7 +43,7 @@ export class ViewSettings {
       if (elem.tags) {
         isInput = true;
         addText = elem.addText;
-        errorMes = elem.errorMes;
+        this.errorMes = elem.errorMes;
       }
     });
 
@@ -51,11 +51,10 @@ export class ViewSettings {
       template += `<p class="settings-addtext settings-addtext-js ${
         isGit ? 'hidden' : ''
       }">${addText}</p>
-      <p class="message message-js hidden">${errorMes}</p>
+      <p class="message message-js hidden">${this.errorMes}</p>
       <input class="tags tags-js" maxlength="15" type="text" ${
         isGit ? 'disabled' : ''
-      } value="${tags.join(' ')}"
-        pattern="^[a-zA-Z\s,]+$">`;
+      } value="${tags.join(' ')}">`;
     }
     this.propsList.innerHTML = template;
     this.setUpInput();
@@ -82,13 +81,15 @@ export class ViewSettings {
   }
 
   isValidTags(tags) {
-    const regex = /^[a-zA-Z\s,]+$/;
+    const regex = /^[a-zA-Z\s,]*$/;
     return regex.test(tags);
   }
 
   showInvalidMessage() {
     this.tagsInput.classList.add('invalid');
-    document.querySelector('.message-js').classList.remove('hidden');
+    const messageContainer = document.querySelector('.message-js');
+    messageContainer.textContent = this.errorMes;
+    messageContainer.classList.remove('hidden');
   }
 
   removeInvalidMessage() {
@@ -146,5 +147,11 @@ export class ViewSettings {
     item.classList.toggle('checked');
 
     item.firstElementChild.classList.toggle('toggle-slider-active');
+  }
+
+  renderNoResultsError(data) {
+    const messageContainer = document.querySelector('.message-js');
+    messageContainer.textContent = data.noResultsError;
+    messageContainer.classList.remove('hidden');
   }
 }

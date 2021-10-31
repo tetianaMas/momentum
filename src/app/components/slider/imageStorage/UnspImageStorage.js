@@ -16,7 +16,7 @@ export class UnspImageStorage extends ImageStorage {
     this.removeCollection();
 
     const link = this.api[dayTime] + '&client_id=' + this.key;
-    console.log(link);
+
     await apiService
       .get(link)
       .then(res => {
@@ -31,10 +31,7 @@ export class UnspImageStorage extends ImageStorage {
     if (!this.collection.length) {
       await this.createLinks();
     }
-    return this.collection[this.randomNum];
-  }
 
-  getCollection() {
-    return this.collection;
+    return this.collection[this.randomNum];
   }
 }

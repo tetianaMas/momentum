@@ -2,7 +2,7 @@ export const props = {
   en: {
     isActive: true,
     categories: ['Language', 'Image sourse', 'Blocks'],
-
+    noResultsError: 'Nothing found. Please, consider using another tag.',
     lang: {
       title: 'Language',
       props: [
@@ -40,8 +40,9 @@ export const props = {
   },
   ru: {
     isActive: false,
-
     categories: ['Язык', 'Изображения', 'Блоки'],
+    noResultsError: 'Ничего не найдено. Пожалуйста, используйте другой тег.',
+
     lang: {
       title: 'Язык',
       props: [

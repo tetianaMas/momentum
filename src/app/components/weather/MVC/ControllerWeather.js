@@ -43,11 +43,7 @@ export class ControllerWeather {
     this.model
       .getWeatherData()
       .then(res => {
-        this.view.render(
-          res,
-          this.model.getLangProperties(),
-          this.model.getCity()
-        );
+        this.view.render(res, this.model.getLangProperties());
         this.model.setWeatherData(res);
       })
       .catch(() => {

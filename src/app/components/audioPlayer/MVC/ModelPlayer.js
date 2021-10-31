@@ -6,7 +6,7 @@ export class ModelPlayer {
     this.playList = customPlaylist || playList;
     this.audio = new Audio();
     this.isPlaying = false;
-    this.volume = 1;
+    this.volume = 0.5;
   }
 
   initAudio() {

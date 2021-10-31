@@ -13,14 +13,14 @@ export class GitImageStorage extends ImageStorage {
     const dayTime = Utils.getTimeOfDay();
 
     for (let i = this.randomNum; i <= this.imagesAmount; i++) {
-      this.collection.push(this.getLink(dayTime, i));
+      this.collection.push(this.getLink('', dayTime, i));
     }
     for (let k = 1; k <= this.randomNum - 1; k++) {
-      this.collection.push(this.getLink(dayTime, k));
+      this.collection.push(this.getLink('', dayTime, k));
     }
   }
 
-  getLink(dayTime, num = this.randomNum) {
+  getLink(tags, dayTime = Utils.getTimeOfDay(), num = this.randomNum) {
     return `${this.api}${dayTime}/${num < 10 ? '0' + num : num}.jpg`;
   }
 

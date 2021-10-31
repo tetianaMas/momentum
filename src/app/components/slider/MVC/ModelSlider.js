@@ -1,13 +1,12 @@
-import { Utils } from '../../../helpers/Utils';
 import { storage } from '../../../service/storage/LocalStorage';
-
 import { GitImageStorage } from '../imageStorage/GitImageStorage';
 import { UnspImageStorage } from '../imageStorage/UnspImageStorage';
+import { UnspImageSearchStorage } from '../imageStorage/UnspImageSearchStorage';
 
 export class ModelSlider {
   constructor() {
     this.sourse = 'git';
-    this.tags = [Utils.getTimeOfDay()];
+    this.tags = [];
     this.apiLinks = {
       git: new GitImageStorage(20),
       unsp: new UnspImageStorage(),
@@ -15,14 +14,25 @@ export class ModelSlider {
   }
 
   getBgLink() {
-    return this.apiLinks[this.sourse].getLink(Utils.getTimeOfDay());
+    return this.apiLinks[this.sourse].getLink();
+  }
+
+  getSearchLink() {
+    const link = this.apiLinks['unsp'].getSearchLink(this.getTags());
+    this.apiLinks['unsp'].loadImages();
+    return link;
   }
 
   async loadImages() {
-    this.apiLinks['git'].createLinks();
     for (let val of Object.values(this.apiLinks)) {
+      val.removeCollection();
+      await val.createLinks();
       val.loadImages();
     }
+  }
+
+  async loadSearchImages() {
+    this.apiLinks.unsp.loadImages();
   }
 
   getBgImage() {
@@ -34,9 +44,20 @@ export class ModelSlider {
   }
 
   setTags(tags) {
-    this.removeFromUnspCollection();
     this.tags = tags;
     this.saveTags();
+  }
+
+  useApiWithTag() {
+    if (this.sourse === 'unsp') {
+      this.apiLinks['unsp'] = new UnspImageSearchStorage();
+    }
+  }
+
+  useDefaulApi() {
+    if (this.sourse === 'unsp') {
+      this.apiLinks['unsp'] = new UnspImageStorage();
+    }
   }
 
   saveTags() {
