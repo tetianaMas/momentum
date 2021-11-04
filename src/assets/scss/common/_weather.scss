@@ -1,0 +1,33 @@
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  row-gap: 5px;
+  width: 180px;
+  max-width: 40%;
+  font-size: 14px;
+  min-height: 180px;
+  text-align: left;
+  transition: 0.5s;
+}
+
+.weather.hidden {
+  @include hide;
+}
+
+.weather-error {
+  margin-top: -10px;
+}
+
+.description-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.weather-icon {
+  font-size: 44px;
+}

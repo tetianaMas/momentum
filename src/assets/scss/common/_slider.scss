@@ -1,0 +1,25 @@
+.slider-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  cursor: pointer;
+}
+
+.slide-prev {
+  left: 20px;
+  background-image: url('../svg/slider-prev.svg');
+}
+
+.slide-next {
+  right: 20px;
+  background-image: url('../svg/slider-next.svg');
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+  &:hover {
+    opacity: 0.4;
+  }
+}
