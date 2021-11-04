@@ -7,6 +7,7 @@ export class ControllerDate {
     this.view = view;
     this.isShownDate = null;
     this.isShownTime = null;
+    this.timeouts = [];
   }
 
   init() {
@@ -36,19 +37,36 @@ export class ControllerDate {
   }
 
   showTime() {
+    let firstTimerIndex, secondTimerIndex;
     if (!this.isShownDate) {
       this.view.hideBlockDate();
-      setTimeout(() => this.view.renderDate(this.model.getCurrentDate()), 1000);
+      firstTimerIndex = setTimeout(
+        () => this.view.renderDate(this.model.getCurrentDate()),
+        1000
+      );
     } else {
       this.view.renderDate(this.model.getCurrentDate());
     }
 
     if (!this.isShownTime) {
       this.view.hideBlockTime();
-      setTimeout(() => this.view.renderTime(this.model.getCurrentTime()), 1000);
+      secondTimerIndex = setTimeout(
+        () => this.view.renderTime(this.model.getCurrentTime()),
+        1000
+      );
     } else {
       this.view.renderTime(this.model.getCurrentTime());
     }
     Utils.timeUpdate(this.showTime.bind(this));
+    this.timeouts.push(firstTimerIndex, secondTimerIndex);
+    this.clearTimeouts();
+  }
+
+  clearTimeouts() {
+    const arr = this.timeouts;
+    arr.forEach((timer, index) => {
+      clearTimeout(timer);
+      this.timeouts.splice(index, 1);
+    });
   }
 }

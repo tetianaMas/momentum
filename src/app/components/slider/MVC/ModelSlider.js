@@ -18,7 +18,7 @@ export class ModelSlider {
   }
 
   getSearchLink() {
-    const link = this.apiLinks['unsp'].getSearchLink(this.getTags());
+    const link = this.apiLinks['unsp'].getLink(this.getTags());
     this.apiLinks['unsp'].loadImages();
     return link;
   }
@@ -58,6 +58,10 @@ export class ModelSlider {
     if (this.sourse === 'unsp') {
       this.apiLinks['unsp'] = new UnspImageStorage();
     }
+  }
+
+  isDefaultApi() {
+    return this.apiLinks['unsp'] instanceof UnspImageStorage;
   }
 
   saveTags() {

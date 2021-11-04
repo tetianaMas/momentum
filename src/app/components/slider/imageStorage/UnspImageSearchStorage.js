@@ -11,7 +11,7 @@ export class UnspImageSearchStorage extends ImageStorage {
     this.unspQuery = propsApi.unspQuery;
   }
 
-  async createSearchLinks(tags) {
+  async createLinks(tags) {
     this.removeCollection();
     const tagsQuery = tags ? '&query=' + tags.join(',') : '';
     const link = this.api + '&client_id=' + this.key + tagsQuery;
@@ -29,9 +29,9 @@ export class UnspImageSearchStorage extends ImageStorage {
       .catch(err => console.log(err));
   }
 
-  async getSearchLink(tags) {
+  async getLink(tags) {
     if (!this.collection.length) {
-      await this.createSearchLinks(tags);
+      await this.createLinks(tags);
     }
 
     return this.collection[this.randomNum];

@@ -2,7 +2,7 @@ export class Utils {
   static timeUpdate(cb) {
     const ONE_SECOND = 1000;
 
-    setTimeout(cb, ONE_SECOND);
+    return setTimeout(cb, ONE_SECOND);
   }
 
   static getTimeOfDay() {
@@ -57,5 +57,13 @@ export class Utils {
   static getId() {
     const date = new Date();
     return Math.round(Math.random() * 100000) + date.getTime();
+  }
+
+  static clearTimeouts() {
+    const arr = this.timeouts;
+    arr.forEach((timer, index) => {
+      clearTimeout(timer);
+      this.timeouts.splice(index, 1);
+    });
   }
 }

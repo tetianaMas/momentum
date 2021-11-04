@@ -5,6 +5,7 @@ export class ControllerQuotes {
     this.model = model;
     this.view = view;
     this.isShown = null;
+    this.timeouts = [];
   }
 
   init() {
@@ -19,14 +20,18 @@ export class ControllerQuotes {
     });
 
     eventBus.subscribe('lang-changed', args => {
+      this.clearTimeouts();
+      let timer;
       const [, lang] = args;
       this.model.setLang(lang);
       if (!this.isShown) {
         this.view.hideBlock();
-        setTimeout(() => this.setQuote(), 1000);
+        timer = setTimeout(() => this.setQuote(), 1000);
       } else {
         this.setQuote();
       }
+
+      this.timeouts.push(timer);
     });
     this.view.randomBtn.addEventListener('click', this.setQuote.bind(this));
   }
@@ -41,5 +46,13 @@ export class ControllerQuotes {
         this.view.render(quote);
       })
       .catch(err => console.log(err.message));
+  }
+
+  clearTimeouts() {
+    const arr = this.timeouts;
+    arr.forEach((timer, index) => {
+      clearTimeout(timer);
+      this.timeouts.splice(index, 1);
+    });
   }
 }

@@ -5,6 +5,7 @@ export class ControllerWeather {
     this.model = model;
     this.view = view;
     this.isShown = null;
+    this.timeouts = [];
   }
 
   init() {
@@ -18,6 +19,9 @@ export class ControllerWeather {
     });
 
     eventBus.subscribe('lang-changed', args => {
+      this.clearTimeouts();
+
+      let timer;
       const [, lang] = args;
       this.model.setLang(lang);
 
@@ -25,8 +29,9 @@ export class ControllerWeather {
         this.getWeather();
       } else {
         this.view.hideBlock();
-        setTimeout(() => this.getWeather(), 1000);
+        timer = setTimeout(() => this.getWeather(), 1000);
       }
+      this.timeouts.push(timer);
     });
 
     this.view.cityContainer.addEventListener('change', () => {
@@ -50,5 +55,13 @@ export class ControllerWeather {
         this.model.setCity(this.model.getDefaultCity());
         this.view.renderError(this.model.getLangProperties());
       });
+  }
+
+  clearTimeouts() {
+    const arr = this.timeouts;
+    arr.forEach((timer, index) => {
+      clearTimeout(timer);
+      this.timeouts.splice(index, 1);
+    });
   }
 }

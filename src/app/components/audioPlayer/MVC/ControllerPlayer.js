@@ -123,11 +123,11 @@ export class ControllerPlayer {
     this.model.playAudio();
     this.initCurrentTime();
 
-    this.model.setTrackVolume(this.model.volume);
-
     this.view.setActiveTrack(this.model.getTrackNum());
     this.view.setTrackTitle(this.model.getTrackTitle());
     this.view.setFullTime(this.model.getTrackFullTime());
+    this.model.getAudio().volume = this.model.volume;
+    this.model.setTrackVolume(this.model.volume);
   }
 
   initCurrentTime() {

@@ -7,6 +7,7 @@ export class ControllerSlider {
   }
 
   async init() {
+    this.model.loadImages();
     eventBus.subscribe('img-changed', async args => {
       const [, val] = args;
       this.model.setSourse(val);
@@ -54,7 +55,6 @@ export class ControllerSlider {
 
     const link = await this.model.getBgLink();
     this.view.setBg(await link);
-    this.model.loadImages();
   }
 
   setBgImage() {
