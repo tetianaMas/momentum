@@ -8,7 +8,7 @@ export class ModelSlider {
     this.sourse = 'git';
     this.tags = [];
     this.apiLinks = {
-      git: new GitImageStorage(20),
+      git: new GitImageStorage(10),
       unsp: new UnspImageStorage(),
     };
   }
@@ -24,14 +24,33 @@ export class ModelSlider {
   }
 
   async loadImages() {
-    for (let val of Object.values(this.apiLinks)) {
-      val.removeCollection();
-      await val.createLinks();
-      val.loadImages();
+    const defaultSrc = this.isDefaultApi();
+    if (defaultSrc) {
+      await this.loadUnspImg();
+    }
+
+    this.loadGitImg();
+  }
+
+  async loadUnspImg() {
+    if (this.sourse === 'unsp') {
+      const src = this.apiLinks['unsp'];
+      src.removeCollection();
+      await src.createLinks();
+      src.loadImages();
     }
   }
 
-  async loadSearchImages() {
+  loadGitImg() {
+    if (this.sourse === 'git') {
+      const src = this.apiLinks['git'];
+      src.removeCollection();
+      src.createLinks();
+      src.loadImages();
+    }
+  }
+
+  loadSearchImages() {
     this.apiLinks.unsp.loadImages();
   }
 

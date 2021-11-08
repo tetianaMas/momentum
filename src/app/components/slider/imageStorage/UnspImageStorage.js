@@ -32,6 +32,6 @@ export class UnspImageStorage extends ImageStorage {
       await this.createLinks();
     }
 
-    return this.collection[this.randomNum];
+    return this.getNextImg();
   }
 }
