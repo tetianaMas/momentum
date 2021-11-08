@@ -3,7 +3,7 @@ import { Utils } from '../../../helpers/Utils';
 export class ImageStorage {
   constructor() {
     this.collection = [];
-    this.randomNum = Utils.getRandomNum(20);
+    this.randomNum = Utils.getRandomNum(10);
   }
 
   loadImages() {
@@ -42,6 +42,8 @@ export class ImageStorage {
     if (this.randomNum > this.collection.length - 1) {
       this.randomNum = 0;
     }
+
+    return this.getImage();
   }
 
   getPrevImg() {
@@ -49,6 +51,8 @@ export class ImageStorage {
     if (this.randomNum < 0) {
       this.randomNum = this.collection.length - 1;
     }
+
+    return this.getImage();
   }
 
   removeCollection() {
